@@ -1,4 +1,4 @@
-var User = require('./user.server.controller');
+const User = require('./user.server.controller')
 
 
 module.exports = function (app, passport) {

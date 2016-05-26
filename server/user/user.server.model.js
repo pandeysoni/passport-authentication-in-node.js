@@ -3,10 +3,10 @@
  * Module dependencies
  */
 
-var mongoose = require('mongoose');
-var userPlugin = require('mongoose-user');
-var Schema = mongoose.Schema;
-var crypto = require('crypto');
+const mongoose = require('mongoose')
+const userPlugin = require('mongoose-user')
+const Schema = mongoose.Schema
+const crypto = require('crypto')
 
 /**
  * User schema
@@ -54,20 +54,6 @@ UserSchema.statics = {
 
 
 
-/**
- * Pre-save hook
- */
-
-UserSchema.pre('save', function(next) {
-  if (!this.isNew) return next();
-
-  if (!validatePresenceOf(this.password) && !this.skipValidation()) {
-    next(new Error('Invalid password'));
-  } else {
-    next();
-  }
-})
-
 var validatePresenceOf = function (value) {
   return value && value.length;
 };
@@ -77,10 +63,6 @@ var validatePresenceOf = function (value) {
  */
 
 UserSchema.methods = {
-
-  // skipValidation: function() {
-  //   return ~oAuthTypes.indexOf(this.provider);
-  // },
 
   /**
    * Authenticate - check if the passwords are the same

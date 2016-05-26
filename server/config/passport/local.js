@@ -2,10 +2,8 @@
 /**
  * Module dependencies.
  */
-
-var mongoose = require('mongoose');
-var LocalStrategy = require('passport-local').Strategy;
-var User = mongoose.model('User');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('../../user/user.server.model').User;
 
 /**
  * Expose
@@ -18,7 +16,7 @@ module.exports = new LocalStrategy({
   function(email, password, done) {
     var options = {
       criteria: { email: email },
-      select: 'name username email hashed_password salt'
+      select: 'name email hashed_password salt'
     };
     User.load(options, function (err, user) {
       if (err) return done(err)

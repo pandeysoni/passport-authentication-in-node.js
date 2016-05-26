@@ -3,10 +3,8 @@
  * Module dependencies.
  */
 
-var mongoose = require('mongoose');
-var User = require('../user/user.server.model').User;
-
-var local = require('./passport/local');
+const User = require('../user/user.server.model').User;
+const local = require('./passport/local');
 
 /**
  * Expose

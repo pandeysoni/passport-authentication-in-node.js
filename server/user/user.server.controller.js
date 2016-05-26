@@ -3,10 +3,9 @@
  * Module dependencies.
  */
 
-var mongoose = require('mongoose');
-// var User = mongoose.model('User');
-var User = require('./user.server.model').User;
-var Boom = require('boom');
+const mongoose = require('mongoose')
+const User = require('./user.server.model').User
+const Boom = require('boom')
 
 
 /**
