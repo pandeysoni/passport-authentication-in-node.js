@@ -5,7 +5,7 @@
 
 var mongoose = require('mongoose');
 // var User = mongoose.model('User');
-var User = require('../models/user').User;
+var User = require('./user.server.model').User;
 var Boom = require('boom');
 
 

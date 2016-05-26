@@ -8,26 +8,14 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	config = require('./server/config/config'),
-  db = require('./server/config/db'),
+	db = require('./server/config/db'),
 	bodyParser = require('body-parser'),
-  path = require('path'),
-  passport = require('passport'),
-  expressSession = require('express-session'),
-	cookieParser = require('cookie-parser');
-
-var app = express();
-var port = process.env.PORT || 3000;
-
-// Connect to mongodb
-var connect = function () {
-  var options = { server: { socketOptions: { keepAlive: 1 } } };
-  mongoose.connect(config.db, options);
-  console.log(config.db);
-};
-connect();
-
-mongoose.connection.on('error', console.log);
-mongoose.connection.on('disconnected', connect);
+	path = require('path'),
+	passport = require('passport'),
+	expressSession = require('express-session'),
+	cookieParser = require('cookie-parser'),
+	app = express(),
+	port = process.env.PORT || 3000;
 
 //use cookie parser to store data
 app.use(cookieParser());
@@ -38,14 +26,8 @@ app.use(express.static(path.join(__dirname, 'client/')));
 app.use(bodyParser.urlencoded({ limit: '52428800', extended: true }));
 app.use(bodyParser.json({limit: '52428800'}));
 
-// Bootstrap models
-fs.readdirSync(__dirname + '/server/models').forEach(function (file) {
-  if (~file.indexOf('.js')) require(__dirname + '/server/models/' + file);
-});
-
 // Bootstrap passport config
 require('./server/config/passport')(passport);
-
 
 app.use(passport.initialize());
 app.use(passport.session());

@@ -4,7 +4,7 @@
  */
 
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User = require('../user/user.server.model').User;
 
 var local = require('./passport/local');
 
@@ -12,7 +12,7 @@ var local = require('./passport/local');
  * Expose
  */
 
-module.exports = function (passport, config) {
+module.exports = function (passport) {
   // serialize sessions
   passport.serializeUser(function(user, done) {
     done(null, user.id)
